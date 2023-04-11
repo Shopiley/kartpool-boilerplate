@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from stores import views as stores_views
+from stores import views as stores_viewsrouter  
 
 router = DefaultRouter()
+stores_viewsrouter = DefaultRouter()
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('stores', include(router.urls))
 ]
+router.register(r'stores',stores_viewsrouter.StoreView,basename='stores')
